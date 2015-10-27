@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 26 10:44:27 2015
 
-@author: gustavo
-"""
 def merge_sort(A, temp, left, rigth):
 
     if (rigth == left):
@@ -37,28 +33,22 @@ def merge_sort(A, temp, left, rigth):
 if __name__ == '__main__':
     
     import timeit
-    import math
     import matplotlib.pyplot as plt
-    
-    #A = merge_sort(list(range(999, 0, -1)),list(range(999, 0, -1)),0,998)
-
-    #print A
+    import sys
+    sys.setrecursionlimit(100000)
     
     x = list()
-    y_O = list()
     y_best = list()
     y_worse = list()
     
-    for n in range(1, 10001):
+    for n in range(1, 100000, 1000):
+        print n
         best = 'merge_sort(list(range('+str(n)+')), list(range('+str(n)+')), 0,'+str(n-1)+')'
         worse = 'merge_sort(list(range('+str(n)+', 0, -1)),list(range('+str(n)+', 0, -1)),0,'+str(n-1)+')'
-        
         x.append(n)
-        y_O.append((n*math.log(n,2))*0.0001)
         y_best.append((timeit.timeit(best, setup="from __main__ import merge_sort", number=1)*300))
         y_worse.append((timeit.timeit(worse, setup="from __main__ import merge_sort", number=1)*300))
     
-    plt.plot(x, y_O)
     plt.plot(x, y_best)
     plt.plot(x, y_worse)
     plt.show()
