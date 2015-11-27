@@ -41,14 +41,16 @@ if __name__ == '__main__':
     y_best = list()
     y_worse = list()
     
-    for n in range(1, 100000, 1000):
+    for n in range(1, 10000, 10):
         print n
         best = 'merge_sort(list(range('+str(n)+')), list(range('+str(n)+')), 0,'+str(n-1)+')'
         worse = 'merge_sort(list(range('+str(n)+', 0, -1)),list(range('+str(n)+', 0, -1)),0,'+str(n-1)+')'
         x.append(n)
-        y_best.append((timeit.timeit(best, setup="from __main__ import merge_sort", number=1)*300))
-        y_worse.append((timeit.timeit(worse, setup="from __main__ import merge_sort", number=1)*300))
+        y_best.append((timeit.timeit(best, setup="from __main__ import merge_sort", number=1)))
+        y_worse.append((timeit.timeit(worse, setup="from __main__ import merge_sort", number=1)))
     
     plt.plot(x, y_best)
     plt.plot(x, y_worse)
+    plt.ylabel(u'Tempo de Execução')
+    plt.xlabel(u'Crescimento')
     plt.show()

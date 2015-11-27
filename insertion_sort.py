@@ -17,7 +17,7 @@ if __name__ == '__main__':
     y_best = list()
     y_worse = list()
     
-    for n in range(0, 10000, 500):
+    for n in range(0, 10000, 10):
         print n
         best = 'insertion_sort(list(range('+str(n)+')),'+str(n)+')'
         worse = 'insertion_sort(list(range('+str(n)+', 0, -1)),'+str(n)+')'
@@ -27,4 +27,6 @@ if __name__ == '__main__':
     
     plt.plot(x, y_best)
     plt.plot(x, y_worse)
+    plt.ylabel(u'Tempo de Execução')
+    plt.xlabel(u'Crescimento')
     plt.show()
